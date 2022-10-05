@@ -8,6 +8,6 @@ serviceMonitor:
 
 
 autoscalingGroups:
-  - name: education-eks-kit-worker-group-120220629071406264800000014
-    minSize: 1
+  - name: education-eks-autoscaling-worker-group-120221005082511629100000015
+    minSize: 3
     maxSize: 20

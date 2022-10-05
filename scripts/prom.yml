@@ -5,7 +5,7 @@ grafana:
     enabled: true
     ingressClassName: nginx
     hosts:
-    - grafana.kit.atix-training.de
+    - grafana.osad.atix-training.de
   sidecar:
     datasources:
       defaultDatasourceScrapeInterval: 1s
@@ -15,9 +15,10 @@ prometheus:
     enabled: false
     ingressClassName: nginx
     hosts:
-    - prometheus.kit.atix-training.de
+    - prometheus.osad.atix-training.de
   prometheusSpec:
     podMonitorSelectorNilUsesHelmValues: false
     probeSelectorNilUsesHelmValues: false
     ruleSelectorNilUsesHelmValues: false
     serviceMonitorSelectorNilUsesHelmValues: false
+    priorityClassName: system-cluster-critical

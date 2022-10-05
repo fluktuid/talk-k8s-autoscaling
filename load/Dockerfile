@@ -54,8 +54,8 @@ FROM scratch
 ARG USER=appuser
 ARG UID=10001
 LABEL maintainer="Lukas Paluch <fluktuid@users.noreply.github.com>"
-LABEL org.opencontainers.image.source https://github.com/fluktuid/talk-kit
-ARG PROJECT_NAME=talk-kit
+LABEL org.opencontainers.image.source https://github.com/fluktuid/talk-k8s-autoscaling
+ARG PROJECT_NAME=talk-k8s-autoscaling
 # Import the user and group files from the builder.
 COPY --from=builder /etc/passwd /etc/passwd
 COPY --from=builder /etc/group /etc/group

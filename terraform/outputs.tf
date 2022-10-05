@@ -38,7 +38,8 @@ output "autoscaler_iam_role" {
   value       = aws_iam_role.cluster_autoscaler.arn
 }
 
+/*
 output "worker_group_name" {
   description = "Autoscaler Iam Role"
   value       = eks.worker
-}
+}*/

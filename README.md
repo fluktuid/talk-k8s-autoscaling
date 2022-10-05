@@ -1,4 +1,4 @@
-# KIT Lecture
+# K8s Cloud Autoscaling Talk
 
 This git contains the materials for second part of the AI-IC Lecture on June 30th 22 (KIT).
 
@@ -21,7 +21,7 @@ This lecture observed scaling services in a cluster and scaling clusters in the 
    Run `make build`
 
 1. setting up the cluster
-   Run `terraform plan; terradform apply` or `make cluster-create`
+   Run `terraform plan; terraform apply` or `make cluster-create`
 
 1. logging into the cluster
    Load the Kubeconfig in the Teraform folder or `make cluster-login`.

@@ -1,4 +1,4 @@
-module github.com/fluktuid/talk-kit
+module github.com/fluktuid/talk-k8s-autoscaling
 
 go 1.18
 

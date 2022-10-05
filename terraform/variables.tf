@@ -6,12 +6,12 @@ variable "region" {
 
 variable "cluster_dns" {
   type    = string
-  default = "kit.example.com"
+  default = "talk-k8s-autoscaling.example.com"
 }
 
 variable "cluster_name" {
   type    = string
-  default = "education-eks-kit"
+  default = "education-eks-autoscaling"
 }
 
 variable "autoscaler_k8s_namespace" {

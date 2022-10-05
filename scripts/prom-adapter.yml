@@ -11,4 +11,4 @@ rules:
     name:
       matches: "server_processed_calls"
       as: "server_requests_per_second"
-    metricsQuery: rate(server_processed_calls[15s])
+    metricsQuery: rate(server_processed_calls[6s])

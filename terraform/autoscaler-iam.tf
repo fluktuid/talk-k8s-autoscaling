@@ -43,7 +43,7 @@ data "aws_iam_policy_document" "cluster_autoscaler_assume" {
 
     principals {
       type        = "Federated"
-      identifiers = ["${replace(data.aws_eks_cluster.cluster.identity[0].oidc[0].issuer, "https://", "")}"]
+      identifiers = [aws_iam_openid_connect_provider.default.arn]
     }
 
     condition {

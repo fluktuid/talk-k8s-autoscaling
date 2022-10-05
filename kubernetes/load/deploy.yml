@@ -22,7 +22,7 @@ spec:
     spec:
       containers:
       - name:  caller
-        image:  ghcr.io/fluktuid/talk-kit/load:latest
+        image:  ghcr.io/fluktuid/talk-k8s-autoscaling/load:latest
         imagePullPolicy: Always
         resources:
           requests:
