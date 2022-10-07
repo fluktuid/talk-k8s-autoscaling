@@ -23,13 +23,13 @@ func main() {
 	metrics.InitAsync()
 	hostname := util.Hostname()
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		fmt.Fprintf(w, "Hello there! 👋")
-		defer metrics.ServerRecordRequest()
+		requestServer := r.Header.Get("Server")
+		defer metrics.ServerRecordRequest(requestServer, hostname)
 		time.Sleep(time.Duration(c.DelayResponse) * time.Millisecond)
-		fmt.Fprintf(w, "Hello there!\nI'm %s.", hostname)
+		fmt.Fprintf(w, "Hello there! 👋\nI'm %s.\n", hostname)
 	})
 
-	log.Info("Starting server at port 8080")
+	log.WithField("hostname", hostname).Info("Starting server at port 8080")
 	if err := http.ListenAndServe(":8080", nil); err != nil {
 		log.Fatal(err)
 	}

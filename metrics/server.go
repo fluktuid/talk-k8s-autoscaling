@@ -6,14 +6,14 @@ import (
 )
 
 var (
-	callsProcessed = promauto.NewCounter(prometheus.CounterOpts{
+	callsProcessed = promauto.NewCounterVec(prometheus.CounterOpts{
 		Name: "server_processed_calls",
 		Help: "The total number of processed calls",
-	})
+	}, []string{"client", "host"})
 )
 
-func ServerRecordRequest() {
+func ServerRecordRequest(requestHost, targetHost string) {
 	go func() {
-		callsProcessed.Inc()
+		callsProcessed.WithLabelValues(requestHost, targetHost).Inc()
 	}()
 }
