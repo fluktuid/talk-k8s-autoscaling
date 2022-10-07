@@ -1,8 +1,6 @@
 # K8s Cloud Autoscaling Talk
 
-This git contains the materials for second part of the AI-IC Lecture on June 30th 22 (KIT).
-
-This lecture observed scaling services in a cluster and scaling clusters in the cloud.
+This repository contains scripts, to try observed scaling services in a cluster and scaling clusters in the cloud.
 
 ## Contents
 
