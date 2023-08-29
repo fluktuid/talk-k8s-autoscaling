@@ -49,26 +49,27 @@ func initCallers(parallel, waitMillisBetween int, callUrl string) []chan struct{
 func main() {
 	c := getConfig()
 
-	channel := initCallers(c.ParallelRequests, c.WaitMillisBetween, c.CallURL)
+	channel := initCallers(c.ParallelRequests, c.WaitMillisBetween, c.Jitter, c.CallURL)
 
 	viper.OnConfigChange(func(e fsnotify.Event) {
 		log.WithField("name", e.Name).Info("Config file changed")
 		c = getConfig()
 		go func() {
-			wait := 1000 / len(channel)
+			wait := c.WaitMillisBetween / len(channel)
 			for _, ch := range channel {
 				close(ch)
 				time.Sleep(time.Duration(wait) * time.Millisecond)
 			}
 		}()
-		channel = initCallers(c.ParallelRequests, c.WaitMillisBetween, c.CallURL)
+		channel = initCallers(c.ParallelRequests, c.WaitMillisBetween, c.Jitter, c.CallURL)
 	})
 	viper.WatchConfig()
 
 	metrics.Init()
 }
 
-func callerFunc(c <-chan struct{}, url string, waitMillisBetween int) {
+func callerFunc(c <-chan struct{}, url string, waitMillisBetween int, jitter int) {
+	hostname := util.Hostname()
 
 	call := func() (elapsedMs int64, success bool) {
 		log.Debug("calling")
@@ -79,6 +80,7 @@ func callerFunc(c <-chan struct{}, url string, waitMillisBetween int) {
 			Timeout: time.Duration(math.Max(float64(waitMillisBetween)-5, 100)) * time.Millisecond,
 		}
 		req, _ := http.NewRequest("GET", url, nil)
+		req.Header.Add("Server", hostname)
 		resp, err := client.Do(req)
 		elapsedMs = time.Since(start).Milliseconds()
 		if err != nil {
